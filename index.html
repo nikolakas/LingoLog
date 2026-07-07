@@ -47,65 +47,66 @@
       Search, Plus, BookOpen, Globe2, X, Volume2,
       User, MapPin, Quote, Check, Sparkles, ChevronRight,
       Instagram, Linkedin, Tag, Download, Upload, Pencil,
+      Trash2, Star, Mic, Play, Square, Users,
     } = LucideReact;
 
     // ---------- Static data ----------
 
     const COUNTRIES = [
-      { name: 'Argentina', flag: '🇦🇷' },
-      { name: 'Australia', flag: '🇦🇺' },
-      { name: 'Austria', flag: '🇦🇹' },
-      { name: 'Belgium', flag: '🇧🇪' },
-      { name: 'Brazil', flag: '🇧🇷' },
-      { name: 'Bulgaria', flag: '🇧🇬' },
-      { name: 'Canada', flag: '🇨🇦' },
-      { name: 'Chile', flag: '🇨🇱' },
-      { name: 'China', flag: '🇨🇳' },
-      { name: 'Colombia', flag: '🇨🇴' },
-      { name: 'Croatia', flag: '🇭🇷' },
-      { name: 'Cuba', flag: '🇨🇺' },
-      { name: 'Czechia', flag: '🇨🇿' },
-      { name: 'Denmark', flag: '🇩🇰' },
-      { name: 'Egypt', flag: '🇪🇬' },
-      { name: 'Finland', flag: '🇫🇮' },
-      { name: 'France', flag: '🇫🇷' },
-      { name: 'Germany', flag: '🇩🇪' },
-      { name: 'Greece', flag: '🇬🇷' },
-      { name: 'Hungary', flag: '🇭🇺' },
-      { name: 'Iceland', flag: '🇮🇸' },
-      { name: 'India', flag: '🇮🇳' },
-      { name: 'Indonesia', flag: '🇮🇩' },
-      { name: 'Iran', flag: '🇮🇷' },
-      { name: 'Ireland', flag: '🇮🇪' },
-      { name: 'Israel', flag: '🇮🇱' },
-      { name: 'Italy', flag: '🇮🇹' },
-      { name: 'Japan', flag: '🇯🇵' },
-      { name: 'Kenya', flag: '🇰🇪' },
-      { name: 'Mexico', flag: '🇲🇽' },
-      { name: 'Morocco', flag: '🇲🇦' },
-      { name: 'Netherlands', flag: '🇳🇱' },
-      { name: 'New Zealand', flag: '🇳🇿' },
-      { name: 'Nigeria', flag: '🇳🇬' },
-      { name: 'Norway', flag: '🇳🇴' },
-      { name: 'Peru', flag: '🇵🇪' },
-      { name: 'Philippines', flag: '🇵🇭' },
-      { name: 'Poland', flag: '🇵🇱' },
-      { name: 'Portugal', flag: '🇵🇹' },
-      { name: 'Romania', flag: '🇷🇴' },
-      { name: 'Russia', flag: '🇷🇺' },
-      { name: 'Saudi Arabia', flag: '🇸🇦' },
-      { name: 'Serbia', flag: '🇷🇸' },
-      { name: 'South Africa', flag: '🇿🇦' },
-      { name: 'South Korea', flag: '🇰🇷' },
-      { name: 'Spain', flag: '🇪🇸' },
-      { name: 'Sweden', flag: '🇸🇪' },
-      { name: 'Switzerland', flag: '🇨🇭' },
-      { name: 'Thailand', flag: '🇹🇭' },
-      { name: 'Turkey', flag: '🇹🇷' },
-      { name: 'Ukraine', flag: '🇺🇦' },
-      { name: 'United Kingdom', flag: '🇬🇧' },
-      { name: 'United States', flag: '🇺🇸' },
-      { name: 'Vietnam', flag: '🇻🇳' },
+      { name: 'Argentina', flag: '🇦🇷', lang: 'es-AR' },
+      { name: 'Australia', flag: '🇦🇺', lang: 'en-AU' },
+      { name: 'Austria', flag: '🇦🇹', lang: 'de-AT' },
+      { name: 'Belgium', flag: '🇧🇪', lang: 'nl-BE' },
+      { name: 'Brazil', flag: '🇧🇷', lang: 'pt-BR' },
+      { name: 'Bulgaria', flag: '🇧🇬', lang: 'bg-BG' },
+      { name: 'Canada', flag: '🇨🇦', lang: 'en-CA' },
+      { name: 'Chile', flag: '🇨🇱', lang: 'es-CL' },
+      { name: 'China', flag: '🇨🇳', lang: 'zh-CN' },
+      { name: 'Colombia', flag: '🇨🇴', lang: 'es-CO' },
+      { name: 'Croatia', flag: '🇭🇷', lang: 'hr-HR' },
+      { name: 'Cuba', flag: '🇨🇺', lang: 'es-MX' },
+      { name: 'Czechia', flag: '🇨🇿', lang: 'cs-CZ' },
+      { name: 'Denmark', flag: '🇩🇰', lang: 'da-DK' },
+      { name: 'Egypt', flag: '🇪🇬', lang: 'ar-EG' },
+      { name: 'Finland', flag: '🇫🇮', lang: 'fi-FI' },
+      { name: 'France', flag: '🇫🇷', lang: 'fr-FR' },
+      { name: 'Germany', flag: '🇩🇪', lang: 'de-DE' },
+      { name: 'Greece', flag: '🇬🇷', lang: 'el-GR' },
+      { name: 'Hungary', flag: '🇭🇺', lang: 'hu-HU' },
+      { name: 'Iceland', flag: '🇮🇸', lang: 'is-IS' },
+      { name: 'India', flag: '🇮🇳', lang: 'hi-IN' },
+      { name: 'Indonesia', flag: '🇮🇩', lang: 'id-ID' },
+      { name: 'Iran', flag: '🇮🇷', lang: 'fa-IR' },
+      { name: 'Ireland', flag: '🇮🇪', lang: 'en-IE' },
+      { name: 'Israel', flag: '🇮🇱', lang: 'he-IL' },
+      { name: 'Italy', flag: '🇮🇹', lang: 'it-IT' },
+      { name: 'Japan', flag: '🇯🇵', lang: 'ja-JP' },
+      { name: 'Kenya', flag: '🇰🇪', lang: 'sw-KE' },
+      { name: 'Mexico', flag: '🇲🇽', lang: 'es-MX' },
+      { name: 'Morocco', flag: '🇲🇦', lang: 'ar-MA' },
+      { name: 'Netherlands', flag: '🇳🇱', lang: 'nl-NL' },
+      { name: 'New Zealand', flag: '🇳🇿', lang: 'en-NZ' },
+      { name: 'Nigeria', flag: '🇳🇬', lang: 'en-NG' },
+      { name: 'Norway', flag: '🇳🇴', lang: 'nb-NO' },
+      { name: 'Peru', flag: '🇵🇪', lang: 'es-PE' },
+      { name: 'Philippines', flag: '🇵🇭', lang: 'fil-PH' },
+      { name: 'Poland', flag: '🇵🇱', lang: 'pl-PL' },
+      { name: 'Portugal', flag: '🇵🇹', lang: 'pt-PT' },
+      { name: 'Romania', flag: '🇷🇴', lang: 'ro-RO' },
+      { name: 'Russia', flag: '🇷🇺', lang: 'ru-RU' },
+      { name: 'Saudi Arabia', flag: '🇸🇦', lang: 'ar-SA' },
+      { name: 'Serbia', flag: '🇷🇸', lang: 'sr-RS' },
+      { name: 'South Africa', flag: '🇿🇦', lang: 'af-ZA' },
+      { name: 'South Korea', flag: '🇰🇷', lang: 'ko-KR' },
+      { name: 'Spain', flag: '🇪🇸', lang: 'es-ES' },
+      { name: 'Sweden', flag: '🇸🇪', lang: 'sv-SE' },
+      { name: 'Switzerland', flag: '🇨🇭', lang: 'de-CH' },
+      { name: 'Thailand', flag: '🇹🇭', lang: 'th-TH' },
+      { name: 'Turkey', flag: '🇹🇷', lang: 'tr-TR' },
+      { name: 'Ukraine', flag: '🇺🇦', lang: 'uk-UA' },
+      { name: 'United Kingdom', flag: '🇬🇧', lang: 'en-GB' },
+      { name: 'United States', flag: '🇺🇸', lang: 'en-US' },
+      { name: 'Vietnam', flag: '🇻🇳', lang: 'vi-VN' },
     ];
 
     const CATEGORIES = [
@@ -116,15 +117,71 @@
     const flagFor = (country) =>
       (COUNTRIES.find((c) => c.name === country) || {}).flag || '🌍';
 
+    const langFor = (country) =>
+      (COUNTRIES.find((c) => c.name === country) || {}).lang || 'en-US';
+
+    // Speak a word: the person's own recording if we have one, otherwise
+    // text-to-speech in the country's language.
+    function speak(entry) {
+      if (entry.audio) {
+        new Audio(entry.audio).play();
+        return;
+      }
+      if (!window.speechSynthesis) return;
+      const u = new SpeechSynthesisUtterance(
+        entry.native && entry.native !== entry.word ? entry.native : entry.word
+      );
+      u.lang = langFor(entry.country);
+      u.rate = 0.85;
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+    }
+
+    // Accent-insensitive text: "café" matches "cafe", "Φιλοτιμο" matches "φιλότιμο".
+    const normalize = (s) =>
+      (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+
+    function editDistance(a, b) {
+      const m = a.length, n = b.length;
+      const dp = Array.from({ length: m + 1 }, (_, i) => {
+        const row = new Array(n + 1).fill(0);
+        row[0] = i;
+        return row;
+      });
+      for (let j = 0; j <= n; j++) dp[0][j] = j;
+      for (let i = 1; i <= m; i++) {
+        for (let j = 1; j <= n; j++) {
+          dp[i][j] = Math.min(
+            dp[i - 1][j] + 1,
+            dp[i][j - 1] + 1,
+            dp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)
+          );
+        }
+      }
+      return dp[m][n];
+    }
+
+    // Words already in the log that look like the one being saved.
+    function findSimilar(word, words) {
+      const q = normalize(word);
+      if (!q) return [];
+      return words.filter((w) => {
+        const t = normalize(w.word);
+        if (t === q) return true;
+        if (q.length >= 4 && (t.includes(q) || q.includes(t))) return true;
+        return editDistance(t, q) <= (Math.min(t.length, q.length) > 5 ? 2 : 1);
+      });
+    }
+
     // Start with an empty log — every word in it is one you collected yourself.
     const INITIAL_WORDS = [];
 
     // ---------- Small building blocks ----------
 
     const EMPTY_FORM = {
-      word: '', pronunciation: '', meaning: '',
+      word: '', native: '', pronunciation: '', meaning: '',
       context: '', taughtBy: '', country: COUNTRIES[0].name,
-      category: CATEGORIES[0],
+      category: CATEGORIES[0], audio: null,
     };
 
     function Field({ label, required, children }) {
@@ -145,29 +202,52 @@
 
     // ---------- Word card ----------
 
-    function WordCard({ entry, onSelect }) {
+    function WordCard({ entry, onSelect, onToggleFav }) {
       return (
-        <button
+        <div
           onClick={() => onSelect(entry)}
-          className="w-full rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-black/[0.04] transition active:scale-[0.985] hover:shadow-md"
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => { if (e.key === 'Enter') onSelect(entry); }}
+          className="w-full cursor-pointer rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-black/[0.04] transition active:scale-[0.985] hover:shadow-md"
         >
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <div className="flex items-baseline gap-2">
                 <span className="text-lg font-bold text-slate-900">{entry.word}</span>
-                {entry.native !== entry.word && (
+                {entry.native && entry.native !== entry.word && (
                   <span className="truncate text-base text-slate-500">{entry.native}</span>
                 )}
               </div>
-              <div className="mt-0.5 flex items-center gap-1.5 text-[13px] text-brand-600">
-                <Volume2 size={13} strokeWidth={2.2} />
-                <span className="italic">{entry.pronunciation}</span>
-              </div>
+              {(entry.pronunciation || entry.audio) && (
+                <button
+                  onClick={(e) => { e.stopPropagation(); speak(entry); }}
+                  aria-label="Hear this word"
+                  className="mt-0.5 flex items-center gap-1.5 text-[13px] text-brand-600 transition active:scale-95"
+                >
+                  <Volume2 size={13} strokeWidth={2.2} />
+                  <span className="italic">{entry.pronunciation || 'hear it'}</span>
+                  {entry.audio && <Mic size={11} strokeWidth={2.4} className="text-brand-400" />}
+                </button>
+              )}
               <p className="mt-1.5 text-[15px] leading-snug text-slate-600">{entry.meaning}</p>
             </div>
-            <span className="shrink-0 text-2xl leading-none" title={entry.country}>
-              {flagFor(entry.country)}
-            </span>
+            <div className="flex shrink-0 flex-col items-center gap-1.5">
+              <span className="text-2xl leading-none" title={entry.country}>
+                {flagFor(entry.country)}
+              </span>
+              <button
+                onClick={(e) => { e.stopPropagation(); onToggleFav(entry.id); }}
+                aria-label={entry.favorite ? 'Remove from favorites' : 'Add to favorites'}
+                className="p-0.5 transition active:scale-90"
+              >
+                <Star
+                  size={17}
+                  strokeWidth={2}
+                  className={entry.favorite ? 'fill-amber-400 text-amber-400' : 'text-slate-300'}
+                />
+              </button>
+            </div>
           </div>
           <div className="mt-3 flex flex-wrap items-center justify-between gap-y-1.5 border-t border-sand-100 pt-2.5">
             <div className="flex items-center gap-1.5">
@@ -186,15 +266,17 @@
               {entry.country} <ChevronRight size={13} />
             </span>
           </div>
-        </button>
+        </div>
       );
     }
 
     // ---------- Library view ----------
 
-    function LibraryView({ words, query, setQuery, onSelect, onImport }) {
+    function LibraryView({ words, query, setQuery, onSelect, onImport, onToggleFav }) {
       const [catFilter, setCatFilter] = useState('All');
       const [countryFilter, setCountryFilter] = useState('All');
+      const [favOnly, setFavOnly] = useState(false);
+      const [sort, setSort] = useState('newest');
 
       const usedCountries = useMemo(
         () => [...new Set(words.map((w) => w.country))].sort(),
@@ -202,23 +284,28 @@
       );
 
       const filtered = useMemo(() => {
-        const q = query.trim().toLowerCase();
-        return words.filter((w) => {
+        const q = normalize(query.trim());
+        const list = words.filter((w) => {
+          if (favOnly && !w.favorite) return false;
           if (catFilter !== 'All' && w.category !== catFilter) return false;
           if (countryFilter !== 'All' && w.country !== countryFilter) return false;
           if (!q) return true;
           return (
-            w.word.toLowerCase().includes(q) ||
-            w.native.toLowerCase().includes(q) ||
-            w.meaning.toLowerCase().includes(q) ||
-            w.taughtBy.toLowerCase().includes(q) ||
-            w.country.toLowerCase().includes(q) ||
-            (w.category || '').toLowerCase().includes(q)
+            normalize(w.word).includes(q) ||
+            normalize(w.native).includes(q) ||
+            normalize(w.meaning).includes(q) ||
+            normalize(w.taughtBy).includes(q) ||
+            normalize(w.country).includes(q) ||
+            normalize(w.category).includes(q)
           );
         });
-      }, [words, query, catFilter, countryFilter]);
+        // words are stored newest-first
+        if (sort === 'oldest') list.reverse();
+        else if (sort === 'az') list.sort((a, b) => a.word.localeCompare(b.word));
+        return list;
+      }, [words, query, catFilter, countryFilter, favOnly, sort]);
 
-      const hasFilter = query || catFilter !== 'All' || countryFilter !== 'All';
+      const hasFilter = query || catFilter !== 'All' || countryFilter !== 'All' || favOnly;
 
       return (
         <div className="px-4 pb-32">
@@ -246,6 +333,18 @@
 
             {/* Category chips */}
             <div className="-mx-4 mt-2.5 flex gap-1.5 overflow-x-auto px-4 pb-0.5">
+              <button
+                onClick={() => setFavOnly(!favOnly)}
+                className={
+                  'flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold transition ' +
+                  (favOnly
+                    ? 'bg-amber-400 text-white shadow-sm'
+                    : 'bg-white text-slate-500 ring-1 ring-sand-200')
+                }
+              >
+                <Star size={12} strokeWidth={2.4} className={favOnly ? 'fill-white' : ''} />
+                Favorites
+              </button>
               {['All', ...CATEGORIES].map((c) => (
                 <button
                   key={c}
@@ -277,14 +376,26 @@
             )}
           </div>
 
-          <p className="mb-2 mt-1 px-1 text-xs font-medium text-slate-400">
-            {filtered.length} {filtered.length === 1 ? 'word' : 'words'}
-            {query ? ` matching “${query}”` : hasFilter ? ' found' : ' in your log'}
-          </p>
+          <div className="mb-2 mt-1 flex items-center justify-between px-1">
+            <p className="text-xs font-medium text-slate-400">
+              {filtered.length} {filtered.length === 1 ? 'word' : 'words'}
+              {query ? ` matching “${query}”` : hasFilter ? ' found' : ' in your log'}
+            </p>
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              aria-label="Sort words"
+              className="appearance-none rounded-lg border border-sand-200 bg-white px-2 py-1 text-xs font-medium text-slate-500 shadow-sm outline-none"
+            >
+              <option value="newest">Newest first</option>
+              <option value="oldest">Oldest first</option>
+              <option value="az">A – Z</option>
+            </select>
+          </div>
 
           <div className="flex flex-col gap-3">
             {filtered.map((w) => (
-              <WordCard key={w.id} entry={w} onSelect={onSelect} />
+              <WordCard key={w.id} entry={w} onSelect={onSelect} onToggleFav={onToggleFav} />
             ))}
             {filtered.length === 0 && (hasFilter ? (
               <div className="mt-10 flex flex-col items-center gap-2 text-center">
@@ -399,33 +510,64 @@
 
     // ---------- Word detail sheet ----------
 
-    function WordDetail({ entry, onClose, onEdit }) {
+    function WordDetail({ entry, onClose, onEdit, onDelete, onToggleFav }) {
       if (!entry) return null;
       return (
         <div className="fixed inset-0 z-40 flex items-end justify-center bg-slate-900/40 backdrop-blur-[2px]" onClick={onClose}>
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md rounded-t-3xl bg-white p-6 pb-10 shadow-2xl"
+            className="max-h-[88vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-white p-6 pb-10 shadow-2xl"
           >
             <div className="mx-auto mb-5 h-1.5 w-10 rounded-full bg-sand-200" />
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="text-2xl font-extrabold text-slate-900">{entry.word}</h2>
-                {entry.native !== entry.word && (
+                {entry.native && entry.native !== entry.word && (
                   <p className="text-lg text-slate-500">{entry.native}</p>
                 )}
-                <p className="mt-1 flex items-center gap-1.5 text-sm italic text-brand-600">
-                  <Volume2 size={14} /> {entry.pronunciation}
-                </p>
+                {entry.pronunciation && (
+                  <p className="mt-1 flex items-center gap-1.5 text-sm italic text-brand-600">
+                    <Volume2 size={14} /> {entry.pronunciation}
+                  </p>
+                )}
               </div>
-              <span className="text-4xl">{flagFor(entry.country)}</span>
+              <div className="flex flex-col items-center gap-2">
+                <span className="text-4xl">{flagFor(entry.country)}</span>
+                <button
+                  onClick={() => onToggleFav(entry.id)}
+                  aria-label={entry.favorite ? 'Remove from favorites' : 'Add to favorites'}
+                  className="transition active:scale-90"
+                >
+                  <Star
+                    size={22}
+                    strokeWidth={2}
+                    className={entry.favorite ? 'fill-amber-400 text-amber-400' : 'text-slate-300'}
+                  />
+                </button>
+              </div>
             </div>
 
-            {entry.category && (
-              <span className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-sand-100 px-3 py-1.5 text-xs font-semibold text-slate-500">
-                <Tag size={12} strokeWidth={2.4} /> {entry.category}
-              </span>
-            )}
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              {entry.category && (
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sand-100 px-3 py-1.5 text-xs font-semibold text-slate-500">
+                  <Tag size={12} strokeWidth={2.4} /> {entry.category}
+                </span>
+              )}
+              <button
+                onClick={() => speak({ ...entry, audio: null })}
+                className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3 py-1.5 text-xs font-semibold text-brand-700 transition active:scale-95"
+              >
+                <Volume2 size={12} strokeWidth={2.4} /> Hear it
+              </button>
+              {entry.audio && (
+                <button
+                  onClick={() => new Audio(entry.audio).play()}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white transition active:scale-95"
+                >
+                  <Play size={12} strokeWidth={2.4} /> From {entry.taughtBy}
+                </button>
+              )}
+            </div>
 
             <div className="mt-4 rounded-2xl bg-brand-50 p-4">
               <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Meaning</p>
@@ -454,12 +596,21 @@
               <p className="mt-2 text-xs text-slate-400">Added {entry.addedOn}</p>
             )}
 
-            <button
-              onClick={() => onEdit(entry)}
-              className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-sand-100 py-3.5 text-sm font-bold text-slate-700 transition hover:bg-sand-200 active:scale-[0.98]"
-            >
-              <Pencil size={15} strokeWidth={2.4} /> Edit this word
-            </button>
+            <div className="mt-5 flex gap-2">
+              <button
+                onClick={() => onEdit(entry)}
+                className="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-sand-100 py-3.5 text-sm font-bold text-slate-700 transition hover:bg-sand-200 active:scale-[0.98]"
+              >
+                <Pencil size={15} strokeWidth={2.4} /> Edit this word
+              </button>
+              <button
+                onClick={() => onDelete(entry)}
+                aria-label="Delete this word"
+                className="flex items-center justify-center gap-2 rounded-2xl bg-rose-50 px-5 py-3.5 text-sm font-bold text-rose-600 transition hover:bg-rose-100 active:scale-[0.98]"
+              >
+                <Trash2 size={15} strokeWidth={2.4} /> Delete
+              </button>
+            </div>
           </div>
         </div>
       );
@@ -467,18 +618,72 @@
 
     // ---------- Add word view ----------
 
-    function AddWordView({ initial, onSave, onCancel }) {
-      const [form, setForm] = useState(initial || EMPTY_FORM);
-      const set = (key) => (e) => setForm({ ...form, [key]: e.target.value });
+    function AddWordView({ initial, words, onSave, onCancel }) {
+      const [form, setForm] = useState(() =>
+        initial
+          ? { ...initial, native: initial.native === initial.word ? '' : (initial.native || '') }
+          : EMPTY_FORM
+      );
+      const [dupes, setDupes] = useState(null);
+      const [recording, setRecording] = useState(false);
+      const recRef = useRef(null);
+
+      const set = (key) => (e) => {
+        const value = e.target.value;
+        setForm((f) => ({ ...f, [key]: value }));
+        if (key === 'word') setDupes(null); // word changed — re-check on next save
+      };
       const valid = form.word.trim() && form.meaning.trim();
+
+      const people = useMemo(
+        () => [...new Set(words.map((w) => w.taughtBy))].filter((p) => p && p !== 'a friend'),
+        [words]
+      );
+
+      const startRecording = async () => {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          const mr = new MediaRecorder(stream);
+          const chunks = [];
+          mr.ondataavailable = (e) => chunks.push(e.data);
+          mr.onstop = () => {
+            stream.getTracks().forEach((t) => t.stop());
+            const blob = new Blob(chunks, { type: mr.mimeType });
+            const reader = new FileReader();
+            reader.onload = () => setForm((f) => ({ ...f, audio: reader.result }));
+            reader.readAsDataURL(blob);
+            setRecording(false);
+          };
+          mr.start();
+          recRef.current = mr;
+          setRecording(true);
+          // keep clips short so they fit comfortably in phone storage
+          setTimeout(() => { if (mr.state === 'recording') mr.stop(); }, 10000);
+        } catch (err) {
+          alert('Could not access the microphone. Check the browser permission and try again.');
+        }
+      };
+
+      const stopRecording = () => {
+        const mr = recRef.current;
+        if (mr && mr.state === 'recording') mr.stop();
+      };
 
       const submit = (e) => {
         e.preventDefault();
         if (!valid) return;
+        const trimmed = form.word.trim();
+        if (!initial && !dupes) {
+          const similar = findSimilar(trimmed, words);
+          if (similar.length > 0) {
+            setDupes(similar);
+            return;
+          }
+        }
         onSave({
           ...form,
-          word: form.word.trim(),
-          native: form.word.trim(),
+          word: trimmed,
+          native: form.native.trim() || trimmed,
           taughtBy: form.taughtBy.trim() || 'a friend',
           addedOn: initial
             ? initial.addedOn
@@ -503,8 +708,51 @@
               <Field label="Word" required>
                 <input className={inputCls} placeholder="e.g. Saudade" value={form.word} onChange={set('word')} autoFocus />
               </Field>
+              <Field label="In native script (if different)">
+                <input className={inputCls} placeholder="e.g. Φιλότιμο, 木漏れ日" value={form.native} onChange={set('native')} />
+              </Field>
               <Field label="Pronunciation (Latin characters)">
                 <input className={inputCls} placeholder="e.g. sow-DAH-jee" value={form.pronunciation} onChange={set('pronunciation')} />
+              </Field>
+              <Field label="Their voice (record them saying it)">
+                <div className="flex flex-wrap items-center gap-2">
+                  {!recording ? (
+                    <button
+                      type="button"
+                      onClick={startRecording}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-white px-3.5 py-2 text-xs font-semibold text-slate-600 shadow-sm ring-1 ring-sand-200 transition hover:text-brand-600 active:scale-95"
+                    >
+                      <Mic size={14} strokeWidth={2.2} /> {form.audio ? 'Re-record' : 'Record'}
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={stopRecording}
+                      className="inline-flex animate-pulse items-center gap-1.5 rounded-full bg-rose-500 px-3.5 py-2 text-xs font-semibold text-white shadow-sm transition active:scale-95"
+                    >
+                      <Square size={13} strokeWidth={2.4} /> Recording… tap to stop
+                    </button>
+                  )}
+                  {form.audio && !recording && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => new Audio(form.audio).play()}
+                        className="inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-2 text-xs font-semibold text-brand-700 transition active:scale-95"
+                      >
+                        <Play size={13} strokeWidth={2.4} /> Play
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setForm((f) => ({ ...f, audio: null }))}
+                        aria-label="Remove recording"
+                        className="rounded-full bg-sand-100 p-2 text-slate-500 transition active:scale-95"
+                      >
+                        <X size={13} />
+                      </button>
+                    </>
+                  )}
+                </div>
               </Field>
               <Field label="Meaning / Direct translation" required>
                 <input className={inputCls} placeholder="e.g. Bittersweet longing for something absent" value={form.meaning} onChange={set('meaning')} />
@@ -521,6 +769,25 @@
               <Field label="Taught by">
                 <input className={inputCls} placeholder="e.g. Marco from the hostel" value={form.taughtBy} onChange={set('taughtBy')} />
               </Field>
+              {people.length > 0 && (
+                <div className="-mt-2 flex flex-wrap gap-1.5">
+                  {people.map((p) => (
+                    <button
+                      key={p}
+                      type="button"
+                      onClick={() => setForm((f) => ({ ...f, taughtBy: p }))}
+                      className={
+                        'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium transition active:scale-95 ' +
+                        (form.taughtBy === p
+                          ? 'bg-brand-600 text-white'
+                          : 'bg-white text-slate-500 ring-1 ring-sand-200')
+                      }
+                    >
+                      <User size={11} strokeWidth={2.4} /> {p}
+                    </button>
+                  ))}
+                </div>
+              )}
               <Field label="Category">
                 <select className={inputCls + ' appearance-none'} value={form.category} onChange={set('category')}>
                   {CATEGORIES.map((c) => (
@@ -536,13 +803,33 @@
                 </select>
               </Field>
 
+              {dupes && (
+                <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+                  <p className="text-sm font-bold text-amber-800">
+                    You may already have this word:
+                  </p>
+                  <ul className="mt-1.5 space-y-1">
+                    {dupes.map((d) => (
+                      <li key={d.id} className="text-sm text-amber-700">
+                        • <b>{d.word}</b> — {d.meaning}
+                        <span className="text-amber-500"> ({d.country})</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-2 text-xs text-amber-600">
+                    If it’s really a different word, tap “Save anyway”.
+                  </p>
+                </div>
+              )}
+
               <div className="h-2" />
               <button
                 type="submit"
                 disabled={!valid}
                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-600 py-4 text-[15px] font-bold text-white shadow-lg shadow-brand-600/25 transition active:scale-[0.98] disabled:bg-slate-300 disabled:shadow-none"
               >
-                <Check size={18} strokeWidth={2.5} /> {initial ? 'Save changes' : 'Save to my LingoLog'}
+                <Check size={18} strokeWidth={2.5} />{' '}
+                {dupes ? 'Save anyway' : initial ? 'Save changes' : 'Save to my LingoLog'}
               </button>
               <div className="h-6" />
             </form>
@@ -553,7 +840,9 @@
 
     // ---------- Directory view ----------
 
-    function DirectoryView({ words, onImport }) {
+    function DirectoryView({ words, onImport, onPersonTap }) {
+      const [mode, setMode] = useState('countries');
+
       const groups = useMemo(() => {
         const byCountry = {};
         for (const w of words) {
@@ -568,43 +857,96 @@
           .sort((a, b) => b.count - a.count);
       }, [words]);
 
+      const peopleGroups = useMemo(() => {
+        const byPerson = {};
+        for (const w of words) {
+          (byPerson[w.taughtBy] = byPerson[w.taughtBy] || []).push(w);
+        }
+        return Object.entries(byPerson)
+          .map(([name, entries]) => ({
+            name,
+            count: entries.length,
+            countries: [...new Set(entries.map((e) => e.country))],
+          }))
+          .sort((a, b) => b.count - a.count);
+      }, [words]);
+
+      const segCls = (active) =>
+        'flex flex-1 items-center justify-center gap-1.5 rounded-xl py-2 text-sm font-semibold transition ' +
+        (active ? 'bg-white text-brand-700 shadow-sm' : 'text-slate-400');
+
       return (
         <div className="px-4 pb-32 pt-2">
           <div className="mb-4 rounded-2xl bg-gradient-to-br from-brand-600 to-brand-700 p-5 text-white shadow-lg shadow-brand-600/20">
             <p className="flex items-center gap-2 text-sm font-medium text-brand-100">
               <Sparkles size={15} /> Your journey so far
             </p>
-            <p className="mt-1 text-3xl font-extrabold">
-              {words.length} words · {groups.length} countries
+            <p className="mt-1 text-2xl font-extrabold">
+              {words.length} {words.length === 1 ? 'word' : 'words'} · {groups.length}{' '}
+              {groups.length === 1 ? 'country' : 'countries'} · {peopleGroups.length}{' '}
+              {peopleGroups.length === 1 ? 'person' : 'people'}
             </p>
           </div>
 
+          <div className="mb-4 flex rounded-2xl bg-sand-100 p-1">
+            <button onClick={() => setMode('countries')} className={segCls(mode === 'countries')}>
+              <Globe2 size={15} strokeWidth={2.4} /> Countries
+            </button>
+            <button onClick={() => setMode('people')} className={segCls(mode === 'people')}>
+              <Users size={15} strokeWidth={2.4} /> People
+            </button>
+          </div>
+
           <div className="flex flex-col gap-3">
-            {groups.map((g) => (
-              <div
-                key={g.country}
-                className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/[0.04]"
-              >
-                <span className="text-3xl">{flagFor(g.country)}</span>
-                <div className="min-w-0 flex-1">
-                  <p className="font-bold text-slate-900">{g.country}</p>
-                  <p className="truncate text-[13px] text-slate-500">
-                    via {g.people.join(', ')}
-                  </p>
+            {mode === 'countries' &&
+              groups.map((g) => (
+                <div
+                  key={g.country}
+                  className="flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/[0.04]"
+                >
+                  <span className="text-3xl">{flagFor(g.country)}</span>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-bold text-slate-900">{g.country}</p>
+                    <p className="truncate text-[13px] text-slate-500">
+                      via {g.people.join(', ')}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-bold text-brand-700">
+                    {g.count} {g.count === 1 ? 'word' : 'words'}
+                  </span>
                 </div>
-                <span className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-bold text-brand-700">
-                  {g.count} {g.count === 1 ? 'word' : 'words'}
-                </span>
-              </div>
-            ))}
-            {groups.length === 0 && (
+              ))}
+
+            {mode === 'people' &&
+              peopleGroups.map((p) => (
+                <button
+                  key={p.name}
+                  onClick={() => onPersonTap(p.name)}
+                  className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 text-left shadow-sm ring-1 ring-black/[0.04] transition active:scale-[0.985] hover:shadow-md"
+                >
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-100 text-lg font-extrabold text-brand-700">
+                    {p.name[0].toUpperCase()}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-bold capitalize text-slate-900">{p.name}</p>
+                    <p className="truncate text-[13px] text-slate-500">
+                      {p.countries.map((c) => `${flagFor(c)} ${c}`).join(' · ')}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-brand-50 px-3 py-1.5 text-sm font-bold text-brand-700">
+                    {p.count} {p.count === 1 ? 'word' : 'words'}
+                  </span>
+                </button>
+              ))}
+
+            {words.length === 0 && (
               <div className="mt-8 flex flex-col items-center gap-2 text-center">
                 <div className="rounded-2xl bg-sand-100 p-4">
                   <Globe2 size={26} className="text-slate-400" />
                 </div>
-                <p className="font-semibold text-slate-600">No countries yet</p>
+                <p className="font-semibold text-slate-600">Nothing here yet</p>
                 <p className="max-w-[240px] text-sm text-slate-400">
-                  Every word you save adds its country to your map.
+                  Every word you save adds its country — and the person who taught you — to your journey.
                 </p>
               </div>
             )}
@@ -683,6 +1025,24 @@
         setEditing(entry);
       };
 
+      const deleteWord = (entry) => {
+        if (!window.confirm(`Delete “${entry.word}”? This can’t be undone.`)) return;
+        setWords(words.filter((w) => w.id !== entry.id));
+        setSelected(null);
+        setToast(`“${entry.word}” deleted`);
+        setTimeout(() => setToast(null), 2200);
+      };
+
+      const toggleFavorite = (id) => {
+        setWords((ws) => ws.map((w) => (w.id === id ? { ...w, favorite: !w.favorite } : w)));
+        setSelected((s) => (s && s.id === id ? { ...s, favorite: !s.favorite } : s));
+      };
+
+      const goToPerson = (name) => {
+        setTab('library');
+        setQuery(name);
+      };
+
       const importWords = (imported) => {
         // merge: keep existing entries, add imported ones that aren't already here
         const existing = new Set(words.map((w) => w.id));
@@ -712,9 +1072,16 @@
           {/* Views */}
           <main className="flex-1">
             {tab === 'library' ? (
-              <LibraryView words={words} query={query} setQuery={setQuery} onSelect={setSelected} onImport={importWords} />
+              <LibraryView
+                words={words}
+                query={query}
+                setQuery={setQuery}
+                onSelect={setSelected}
+                onImport={importWords}
+                onToggleFav={toggleFavorite}
+              />
             ) : (
-              <DirectoryView words={words} onImport={importWords} />
+              <DirectoryView words={words} onImport={importWords} onPersonTap={goToPerson} />
             )}
           </main>
 
@@ -739,7 +1106,7 @@
                   <Plus size={26} strokeWidth={2.5} />
                 </button>
               </div>
-              <TabButton active={tab === 'directory'} icon={Globe2} label="Countries" onClick={() => setTab('directory')} />
+              <TabButton active={tab === 'directory'} icon={Globe2} label="Journey" onClick={() => setTab('directory')} />
             </div>
           </nav>
 
@@ -747,11 +1114,18 @@
           {(adding || editing) && (
             <AddWordView
               initial={editing}
+              words={words}
               onSave={saveWord}
               onCancel={() => { setAdding(false); setEditing(null); }}
             />
           )}
-          <WordDetail entry={selected} onClose={() => setSelected(null)} onEdit={startEdit} />
+          <WordDetail
+            entry={selected}
+            onClose={() => setSelected(null)}
+            onEdit={startEdit}
+            onDelete={deleteWord}
+            onToggleFav={toggleFavorite}
+          />
         </div>
       );
     }
