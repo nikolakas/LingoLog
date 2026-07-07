@@ -46,7 +46,7 @@
     const {
       Search, Plus, BookOpen, Globe2, X, Volume2,
       User, MapPin, Quote, Check, Sparkles, ChevronRight,
-      Instagram, Linkedin, Tag, Download, Upload,
+      Instagram, Linkedin, Tag, Download, Upload, Pencil,
     } = LucideReact;
 
     // ---------- Static data ----------
@@ -399,7 +399,7 @@
 
     // ---------- Word detail sheet ----------
 
-    function WordDetail({ entry, onClose }) {
+    function WordDetail({ entry, onClose, onEdit }) {
       if (!entry) return null;
       return (
         <div className="fixed inset-0 z-40 flex items-end justify-center bg-slate-900/40 backdrop-blur-[2px]" onClick={onClose}>
@@ -453,6 +453,13 @@
             {entry.addedOn && (
               <p className="mt-2 text-xs text-slate-400">Added {entry.addedOn}</p>
             )}
+
+            <button
+              onClick={() => onEdit(entry)}
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-2xl bg-sand-100 py-3.5 text-sm font-bold text-slate-700 transition hover:bg-sand-200 active:scale-[0.98]"
+            >
+              <Pencil size={15} strokeWidth={2.4} /> Edit this word
+            </button>
           </div>
         </div>
       );
@@ -460,8 +467,8 @@
 
     // ---------- Add word view ----------
 
-    function AddWordView({ onSave, onCancel }) {
-      const [form, setForm] = useState(EMPTY_FORM);
+    function AddWordView({ initial, onSave, onCancel }) {
+      const [form, setForm] = useState(initial || EMPTY_FORM);
       const set = (key) => (e) => setForm({ ...form, [key]: e.target.value });
       const valid = form.word.trim() && form.meaning.trim();
 
@@ -473,9 +480,11 @@
           word: form.word.trim(),
           native: form.word.trim(),
           taughtBy: form.taughtBy.trim() || 'a friend',
-          addedOn: new Date().toLocaleDateString('en-US', {
-            month: 'long', day: 'numeric', year: 'numeric',
-          }),
+          addedOn: initial
+            ? initial.addedOn
+            : new Date().toLocaleDateString('en-US', {
+                month: 'long', day: 'numeric', year: 'numeric',
+              }),
         });
       };
 
@@ -486,7 +495,7 @@
               <button onClick={onCancel} className="rounded-full p-2 text-slate-500 hover:bg-sand-100">
                 <X size={20} />
               </button>
-              <h2 className="text-base font-bold text-slate-800">New Word</h2>
+              <h2 className="text-base font-bold text-slate-800">{initial ? 'Edit Word' : 'New Word'}</h2>
               <span className="w-9" />
             </header>
 
@@ -533,7 +542,7 @@
                 disabled={!valid}
                 className="flex w-full items-center justify-center gap-2 rounded-2xl bg-brand-600 py-4 text-[15px] font-bold text-white shadow-lg shadow-brand-600/25 transition active:scale-[0.98] disabled:bg-slate-300 disabled:shadow-none"
               >
-                <Check size={18} strokeWidth={2.5} /> Save to my LingoLog
+                <Check size={18} strokeWidth={2.5} /> {initial ? 'Save changes' : 'Save to my LingoLog'}
               </button>
               <div className="h-6" />
             </form>
@@ -650,16 +659,28 @@
       const [tab, setTab] = useState('library');
       const [query, setQuery] = useState('');
       const [adding, setAdding] = useState(false);
+      const [editing, setEditing] = useState(null);
       const [selected, setSelected] = useState(null);
       const [toast, setToast] = useState(null);
 
       const saveWord = (entry) => {
-        setWords([{ ...entry, id: Date.now() }, ...words]);
+        if (entry.id) {
+          setWords(words.map((w) => (w.id === entry.id ? entry : w)));
+          setToast(`“${entry.word}” updated!`);
+        } else {
+          setWords([{ ...entry, id: Date.now() }, ...words]);
+          setQuery('');
+          setToast(`“${entry.word}” saved!`);
+        }
         setAdding(false);
+        setEditing(null);
         setTab('library');
-        setQuery('');
-        setToast(`“${entry.word}” saved!`);
         setTimeout(() => setToast(null), 2200);
+      };
+
+      const startEdit = (entry) => {
+        setSelected(null);
+        setEditing(entry);
       };
 
       const importWords = (imported) => {
@@ -723,8 +744,14 @@
           </nav>
 
           {/* Overlays */}
-          {adding && <AddWordView onSave={saveWord} onCancel={() => setAdding(false)} />}
-          <WordDetail entry={selected} onClose={() => setSelected(null)} />
+          {(adding || editing) && (
+            <AddWordView
+              initial={editing}
+              onSave={saveWord}
+              onCancel={() => { setAdding(false); setEditing(null); }}
+            />
+          )}
+          <WordDetail entry={selected} onClose={() => setSelected(null)} onEdit={startEdit} />
         </div>
       );
     }
