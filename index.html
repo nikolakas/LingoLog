@@ -61,6 +61,7 @@
       User, MapPin, Quote, Check, Sparkles, ChevronRight,
       Instagram, Linkedin, Tag, Download, Upload, Pencil,
       Trash2, Star, Mic, Play, Square, Users, Share2,
+      GraduationCap, RotateCcw,
     } = LucideReact;
 
     // ---------- Static data ----------
@@ -245,6 +246,15 @@
     // Start with an empty log — every word in it is one you collected yourself.
     const INITIAL_WORDS = [];
 
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
     // ---------- Small building blocks ----------
 
     const EMPTY_FORM = {
@@ -339,7 +349,7 @@
 
     // ---------- Library view ----------
 
-    function LibraryView({ words, query, setQuery, onSelect, onImport, onToggleFav }) {
+    function LibraryView({ words, query, setQuery, onSelect, onImport, onToggleFav, onPractice }) {
       const [catFilter, setCatFilter] = useState('All');
       const [countryFilter, setCountryFilter] = useState('All');
       const [favOnly, setFavOnly] = useState(false);
@@ -400,6 +410,14 @@
 
             {/* Category chips */}
             <div className="-mx-4 mt-2.5 flex gap-1.5 overflow-x-auto px-4 pb-0.5">
+              {filtered.length > 0 && (
+                <button
+                  onClick={() => onPractice(filtered)}
+                  className="flex shrink-0 items-center gap-1 whitespace-nowrap rounded-full bg-brand-100 px-3 py-1.5 text-xs font-semibold text-brand-700 transition active:scale-95"
+                >
+                  <GraduationCap size={13} strokeWidth={2.4} /> Practice
+                </button>
+              )}
               <button
                 onClick={() => setFavOnly(!favOnly)}
                 className={
@@ -942,9 +960,151 @@
       );
     }
 
+    // ---------- Practice (flashcards) ----------
+
+    function PracticeView({ words, onClose }) {
+      const [queue, setQueue] = useState(() => shuffle(words));
+      const [idx, setIdx] = useState(0);
+      const [flipped, setFlipped] = useState(false);
+      const [got, setGot] = useState(0);
+      const [again, setAgain] = useState(0);
+
+      const card = queue[idx];
+      const done = idx >= queue.length;
+
+      const answer = (known) => {
+        if (known) {
+          setGot((g) => g + 1);
+        } else {
+          setAgain((a) => a + 1);
+          setQueue((q) => [...q, card]); // see it again at the end
+        }
+        setFlipped(false);
+        setIdx((i) => i + 1);
+      };
+
+      const restart = () => {
+        setQueue(shuffle(words));
+        setIdx(0);
+        setFlipped(false);
+        setGot(0);
+        setAgain(0);
+      };
+
+      return (
+        <div className="fixed inset-0 z-30 flex justify-center bg-slate-900/40 backdrop-blur-[2px]">
+          <div className="flex h-full w-full max-w-md flex-col bg-sand-50">
+            <header className="flex items-center justify-between border-b border-sand-200 bg-white px-4 py-4">
+              <button onClick={onClose} className="rounded-full p-2 text-slate-500 hover:bg-sand-100">
+                <X size={20} />
+              </button>
+              <h2 className="text-base font-bold text-slate-800">Practice</h2>
+              <span className="w-9 text-right text-sm font-semibold text-slate-400">
+                {done ? '' : `${idx + 1}/${queue.length}`}
+              </span>
+            </header>
+
+            {done ? (
+              <div className="flex flex-1 flex-col items-center justify-center gap-3 px-8 text-center">
+                <span className="text-5xl">🎉</span>
+                <p className="text-xl font-extrabold text-slate-900">Session done!</p>
+                <p className="text-sm text-slate-500">
+                  <b className="text-brand-600">{got}</b> known ·{' '}
+                  <b className="text-rose-500">{again}</b> needed another look
+                </p>
+                <div className="mt-4 flex gap-2">
+                  <button
+                    onClick={restart}
+                    className="inline-flex items-center gap-2 rounded-2xl bg-brand-600 px-5 py-3.5 text-sm font-bold text-white shadow-lg shadow-brand-600/25 transition active:scale-[0.98]"
+                  >
+                    <RotateCcw size={15} strokeWidth={2.4} /> Practice again
+                  </button>
+                  <button
+                    onClick={onClose}
+                    className="rounded-2xl bg-sand-100 px-5 py-3.5 text-sm font-bold text-slate-700 transition hover:bg-sand-200 active:scale-[0.98]"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-1 flex-col px-4 py-5">
+                <div
+                  onClick={() => setFlipped(!flipped)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setFlipped(!flipped); }}
+                  className="flex flex-1 cursor-pointer flex-col items-center justify-center gap-3 rounded-3xl bg-white p-8 text-center shadow-lg ring-1 ring-black/[0.04] transition active:scale-[0.99]"
+                >
+                  {!flipped ? (
+                    <>
+                      <span className="text-4xl">{flagFor(card.country)}</span>
+                      <p className="text-3xl font-extrabold text-slate-900">{card.word}</p>
+                      {card.native && card.native !== card.word && (
+                        <p className="text-xl text-slate-500">{card.native}</p>
+                      )}
+                      {card.pronunciation && (
+                        <p className="text-sm italic text-brand-600">{card.pronunciation}</p>
+                      )}
+                      <button
+                        onClick={(e) => { e.stopPropagation(); speak(card); }}
+                        className="mt-1 inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-3.5 py-2 text-xs font-semibold text-brand-700 transition active:scale-95"
+                      >
+                        <Volume2 size={13} strokeWidth={2.4} /> Hear it
+                      </button>
+                      <p className="mt-4 text-xs font-medium text-slate-400">Tap to reveal the meaning</p>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-brand-700">Meaning</p>
+                      <p className="text-xl font-bold text-slate-900">{card.meaning}</p>
+                      {card.context && (
+                        <p className="mt-1 max-w-[260px] text-sm leading-relaxed text-slate-500">
+                          “{card.context}”
+                        </p>
+                      )}
+                      <p className="mt-3 inline-flex items-center gap-1.5 text-xs text-slate-400">
+                        <User size={12} /> Taught by {card.taughtBy} · {flagFor(card.country)} {card.country}
+                      </p>
+                    </>
+                  )}
+                </div>
+
+                <div className="mt-4 flex gap-2 pb-2">
+                  {!flipped ? (
+                    <button
+                      onClick={() => setFlipped(true)}
+                      className="w-full rounded-2xl bg-brand-600 py-4 text-[15px] font-bold text-white shadow-lg shadow-brand-600/25 transition active:scale-[0.98]"
+                    >
+                      Show meaning
+                    </button>
+                  ) : (
+                    <>
+                      <button
+                        onClick={() => answer(false)}
+                        className="flex-1 rounded-2xl bg-rose-50 py-4 text-[15px] font-bold text-rose-600 transition hover:bg-rose-100 active:scale-[0.98]"
+                      >
+                        Still learning
+                      </button>
+                      <button
+                        onClick={() => answer(true)}
+                        className="flex-1 rounded-2xl bg-brand-600 py-4 text-[15px] font-bold text-white shadow-lg shadow-brand-600/25 transition active:scale-[0.98]"
+                      >
+                        Got it
+                      </button>
+                    </>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
     // ---------- Directory view ----------
 
-    function DirectoryView({ words, onImport, onPersonTap, onCountryTap }) {
+    function DirectoryView({ words, onImport, onPersonTap, onCountryTap, onPractice }) {
       const [mode, setMode] = useState('countries');
 
       const groups = useMemo(() => {
@@ -990,6 +1150,14 @@
               {groups.length === 1 ? 'country' : 'countries'} · {peopleGroups.length}{' '}
               {peopleGroups.length === 1 ? 'person' : 'people'}
             </p>
+            {words.length > 0 && (
+              <button
+                onClick={() => onPractice(words)}
+                className="mt-3 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-bold text-white ring-1 ring-white/25 transition active:scale-95"
+              >
+                <GraduationCap size={15} strokeWidth={2.4} /> Practice flashcards
+              </button>
+            )}
           </div>
 
           <div className="mb-4 flex rounded-2xl bg-sand-100 p-1">
@@ -1110,6 +1278,7 @@
       const [selected, setSelected] = useState(null);
       const [toast, setToast] = useState(null);
       const [pendingDelete, setPendingDelete] = useState(null);
+      const [practicing, setPracticing] = useState(null); // list of words to drill
       const undoTimer = useRef(null);
 
       const saveWord = (entry) => {
@@ -1193,6 +1362,7 @@
                 onSelect={setSelected}
                 onImport={importWords}
                 onToggleFav={toggleFavorite}
+                onPractice={setPracticing}
               />
             ) : (
               <DirectoryView
@@ -1200,6 +1370,7 @@
                 onImport={importWords}
                 onPersonTap={goToPerson}
                 onCountryTap={goToPerson}
+                onPractice={setPracticing}
               />
             )}
           </main>
@@ -1238,6 +1409,9 @@
           </nav>
 
           {/* Overlays */}
+          {practicing && (
+            <PracticeView words={practicing} onClose={() => setPracticing(null)} />
+          )}
           {(adding || editing) && (
             <AddWordView
               initial={editing}
