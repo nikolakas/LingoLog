@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>LingoLog — Your Social Dictionary</title>
   <link rel="icon" href="logo.svg" type="image/svg+xml" />
   <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192" />
@@ -21,6 +21,12 @@
        classic script and leave the page blank. -->
   <script src="https://unpkg.com/@babel/standalone@7/babel.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Windows has no flag emoji font, so country flags render as letter pairs
+       (e.g. "LB"). This polyfill loads a Twemoji flag font only where needed. -->
+  <script type="module">
+    import { polyfillCountryFlagEmojis } from 'https://cdn.jsdelivr.net/npm/country-flag-emoji-polyfill@0.1/+esm';
+    polyfillCountryFlagEmojis();
+  </script>
   <script>
     tailwind.config = {
       theme: {
@@ -33,7 +39,7 @@
             },
             sand: { 50: '#faf8f5', 100: '#f3efe8', 200: '#e7dfd2' },
           },
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          fontFamily: { sans: ['Twemoji Country Flags', 'Inter', 'system-ui', 'sans-serif'] },
         },
       },
     };
@@ -60,59 +66,115 @@
     // ---------- Static data ----------
 
     const COUNTRIES = [
+      { name: 'Afghanistan', flag: '🇦🇫', lang: 'fa-AF' },
+      { name: 'Albania', flag: '🇦🇱', lang: 'sq-AL' },
+      { name: 'Algeria', flag: '🇩🇿', lang: 'ar-DZ' },
       { name: 'Argentina', flag: '🇦🇷', lang: 'es-AR' },
+      { name: 'Armenia', flag: '🇦🇲', lang: 'hy-AM' },
       { name: 'Australia', flag: '🇦🇺', lang: 'en-AU' },
       { name: 'Austria', flag: '🇦🇹', lang: 'de-AT' },
+      { name: 'Azerbaijan', flag: '🇦🇿', lang: 'az-AZ' },
+      { name: 'Bangladesh', flag: '🇧🇩', lang: 'bn-BD' },
       { name: 'Belgium', flag: '🇧🇪', lang: 'nl-BE' },
+      { name: 'Bolivia', flag: '🇧🇴', lang: 'es-BO' },
+      { name: 'Bosnia & Herzegovina', flag: '🇧🇦', lang: 'bs-BA' },
       { name: 'Brazil', flag: '🇧🇷', lang: 'pt-BR' },
       { name: 'Bulgaria', flag: '🇧🇬', lang: 'bg-BG' },
+      { name: 'Cambodia', flag: '🇰🇭', lang: 'km-KH' },
       { name: 'Canada', flag: '🇨🇦', lang: 'en-CA' },
       { name: 'Chile', flag: '🇨🇱', lang: 'es-CL' },
       { name: 'China', flag: '🇨🇳', lang: 'zh-CN' },
       { name: 'Colombia', flag: '🇨🇴', lang: 'es-CO' },
+      { name: 'Costa Rica', flag: '🇨🇷', lang: 'es-CR' },
       { name: 'Croatia', flag: '🇭🇷', lang: 'hr-HR' },
       { name: 'Cuba', flag: '🇨🇺', lang: 'es-MX' },
+      { name: 'Cyprus', flag: '🇨🇾', lang: 'el-CY' },
       { name: 'Czechia', flag: '🇨🇿', lang: 'cs-CZ' },
       { name: 'Denmark', flag: '🇩🇰', lang: 'da-DK' },
+      { name: 'Dominican Republic', flag: '🇩🇴', lang: 'es-DO' },
+      { name: 'Ecuador', flag: '🇪🇨', lang: 'es-EC' },
       { name: 'Egypt', flag: '🇪🇬', lang: 'ar-EG' },
+      { name: 'El Salvador', flag: '🇸🇻', lang: 'es-SV' },
+      { name: 'Estonia', flag: '🇪🇪', lang: 'et-EE' },
+      { name: 'Ethiopia', flag: '🇪🇹', lang: 'am-ET' },
       { name: 'Finland', flag: '🇫🇮', lang: 'fi-FI' },
       { name: 'France', flag: '🇫🇷', lang: 'fr-FR' },
+      { name: 'Georgia', flag: '🇬🇪', lang: 'ka-GE' },
       { name: 'Germany', flag: '🇩🇪', lang: 'de-DE' },
+      { name: 'Ghana', flag: '🇬🇭', lang: 'en-GH' },
       { name: 'Greece', flag: '🇬🇷', lang: 'el-GR' },
+      { name: 'Guatemala', flag: '🇬🇹', lang: 'es-GT' },
+      { name: 'Hong Kong', flag: '🇭🇰', lang: 'zh-HK' },
       { name: 'Hungary', flag: '🇭🇺', lang: 'hu-HU' },
       { name: 'Iceland', flag: '🇮🇸', lang: 'is-IS' },
       { name: 'India', flag: '🇮🇳', lang: 'hi-IN' },
       { name: 'Indonesia', flag: '🇮🇩', lang: 'id-ID' },
       { name: 'Iran', flag: '🇮🇷', lang: 'fa-IR' },
+      { name: 'Iraq', flag: '🇮🇶', lang: 'ar-IQ' },
       { name: 'Ireland', flag: '🇮🇪', lang: 'en-IE' },
       { name: 'Israel', flag: '🇮🇱', lang: 'he-IL' },
       { name: 'Italy', flag: '🇮🇹', lang: 'it-IT' },
       { name: 'Japan', flag: '🇯🇵', lang: 'ja-JP' },
+      { name: 'Jordan', flag: '🇯🇴', lang: 'ar-JO' },
+      { name: 'Kazakhstan', flag: '🇰🇿', lang: 'kk-KZ' },
       { name: 'Kenya', flag: '🇰🇪', lang: 'sw-KE' },
+      { name: 'Kuwait', flag: '🇰🇼', lang: 'ar-KW' },
+      { name: 'Laos', flag: '🇱🇦', lang: 'lo-LA' },
+      { name: 'Latvia', flag: '🇱🇻', lang: 'lv-LV' },
+      { name: 'Lebanon', flag: '🇱🇧', lang: 'ar-LB' },
+      { name: 'Lithuania', flag: '🇱🇹', lang: 'lt-LT' },
+      { name: 'Luxembourg', flag: '🇱🇺', lang: 'fr-LU' },
+      { name: 'Malaysia', flag: '🇲🇾', lang: 'ms-MY' },
+      { name: 'Malta', flag: '🇲🇹', lang: 'mt-MT' },
       { name: 'Mexico', flag: '🇲🇽', lang: 'es-MX' },
+      { name: 'Moldova', flag: '🇲🇩', lang: 'ro-MD' },
+      { name: 'Mongolia', flag: '🇲🇳', lang: 'mn-MN' },
+      { name: 'Montenegro', flag: '🇲🇪', lang: 'sr-RS' },
       { name: 'Morocco', flag: '🇲🇦', lang: 'ar-MA' },
+      { name: 'Myanmar', flag: '🇲🇲', lang: 'my-MM' },
+      { name: 'Nepal', flag: '🇳🇵', lang: 'ne-NP' },
       { name: 'Netherlands', flag: '🇳🇱', lang: 'nl-NL' },
       { name: 'New Zealand', flag: '🇳🇿', lang: 'en-NZ' },
       { name: 'Nigeria', flag: '🇳🇬', lang: 'en-NG' },
+      { name: 'North Macedonia', flag: '🇲🇰', lang: 'mk-MK' },
       { name: 'Norway', flag: '🇳🇴', lang: 'nb-NO' },
+      { name: 'Oman', flag: '🇴🇲', lang: 'ar-OM' },
+      { name: 'Pakistan', flag: '🇵🇰', lang: 'ur-PK' },
+      { name: 'Palestine', flag: '🇵🇸', lang: 'ar-PS' },
+      { name: 'Panama', flag: '🇵🇦', lang: 'es-PA' },
+      { name: 'Paraguay', flag: '🇵🇾', lang: 'es-PY' },
       { name: 'Peru', flag: '🇵🇪', lang: 'es-PE' },
       { name: 'Philippines', flag: '🇵🇭', lang: 'fil-PH' },
       { name: 'Poland', flag: '🇵🇱', lang: 'pl-PL' },
       { name: 'Portugal', flag: '🇵🇹', lang: 'pt-PT' },
+      { name: 'Qatar', flag: '🇶🇦', lang: 'ar-QA' },
       { name: 'Romania', flag: '🇷🇴', lang: 'ro-RO' },
       { name: 'Russia', flag: '🇷🇺', lang: 'ru-RU' },
       { name: 'Saudi Arabia', flag: '🇸🇦', lang: 'ar-SA' },
+      { name: 'Senegal', flag: '🇸🇳', lang: 'fr-SN' },
       { name: 'Serbia', flag: '🇷🇸', lang: 'sr-RS' },
+      { name: 'Singapore', flag: '🇸🇬', lang: 'en-SG' },
+      { name: 'Slovakia', flag: '🇸🇰', lang: 'sk-SK' },
+      { name: 'Slovenia', flag: '🇸🇮', lang: 'sl-SI' },
       { name: 'South Africa', flag: '🇿🇦', lang: 'af-ZA' },
       { name: 'South Korea', flag: '🇰🇷', lang: 'ko-KR' },
       { name: 'Spain', flag: '🇪🇸', lang: 'es-ES' },
+      { name: 'Sri Lanka', flag: '🇱🇰', lang: 'si-LK' },
       { name: 'Sweden', flag: '🇸🇪', lang: 'sv-SE' },
       { name: 'Switzerland', flag: '🇨🇭', lang: 'de-CH' },
+      { name: 'Syria', flag: '🇸🇾', lang: 'ar-SY' },
+      { name: 'Taiwan', flag: '🇹🇼', lang: 'zh-TW' },
+      { name: 'Tanzania', flag: '🇹🇿', lang: 'sw-TZ' },
       { name: 'Thailand', flag: '🇹🇭', lang: 'th-TH' },
+      { name: 'Tunisia', flag: '🇹🇳', lang: 'ar-TN' },
       { name: 'Turkey', flag: '🇹🇷', lang: 'tr-TR' },
       { name: 'Ukraine', flag: '🇺🇦', lang: 'uk-UA' },
+      { name: 'United Arab Emirates', flag: '🇦🇪', lang: 'ar-AE' },
       { name: 'United Kingdom', flag: '🇬🇧', lang: 'en-GB' },
       { name: 'United States', flag: '🇺🇸', lang: 'en-US' },
+      { name: 'Uruguay', flag: '🇺🇾', lang: 'es-UY' },
+      { name: 'Uzbekistan', flag: '🇺🇿', lang: 'uz-UZ' },
+      { name: 'Venezuela', flag: '🇻🇪', lang: 'es-VE' },
       { name: 'Vietnam', flag: '🇻🇳', lang: 'vi-VN' },
     ];
 
@@ -629,7 +691,8 @@
       const [form, setForm] = useState(() =>
         initial
           ? { ...initial, native: initial.native === initial.word ? '' : (initial.native || '') }
-          : EMPTY_FORM
+          // default to the country of the most recently saved word
+          : { ...EMPTY_FORM, country: (words[0] && words[0].country) || EMPTY_FORM.country }
       );
       const [dupes, setDupes] = useState(null);
       const [recording, setRecording] = useState(false);
@@ -1098,7 +1161,7 @@
           )}
 
           {/* Bottom tab bar */}
-          <nav className="fixed bottom-0 left-1/2 z-20 w-full max-w-md -translate-x-1/2 border-t border-sand-200 bg-white/95 pb-2 backdrop-blur">
+          <nav className="fixed bottom-0 left-1/2 z-20 w-full max-w-md -translate-x-1/2 border-t border-sand-200 bg-white/95 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur">
             <div className="relative flex items-center px-6">
               <TabButton active={tab === 'library'} icon={BookOpen} label="Library" onClick={() => setTab('library')} />
               {/* Center primary button */}
